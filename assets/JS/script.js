@@ -108,8 +108,8 @@ function writeSearchHistory(array) {
 }
 
 // Get a deafult weather search
-returnCurrentWeather("Toronto");
-returnWeatherForecast("Toronto");
+returnCurrentWeather("Scottsdale");
+returnWeatherForecast("Scottsdale");
 
 $("#submitCity").click(function() {
     event.preventDefault();
