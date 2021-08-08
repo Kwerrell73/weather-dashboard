@@ -6,7 +6,7 @@ var cities;
 
 if (localStorage.getItem("localWeatherSearches")) {
     cities = JSON.parse(localStorage.getItem("localWeatherSearches"));
-    writeSearchHistory(cities);
+    searchHistory(cities);
 } else {
     cities = [];
 };
@@ -126,9 +126,9 @@ function historyBtn(citySelected) {
         return;
     }
 
-    if (!citiesArray.includes(citySelected)) {
-        citiesArray.push(citySelected);
-        localStorage.setItem("localWeatherSearches", JSON.stringify(citiesArray));
+    if (!cities.includes(citySelected)) {
+        cities.push(citySelected);
+        localStorage.setItem("localWeatherSearches", JSON.stringify(cities));
     }
 
     $("#previousSearch").prepend
