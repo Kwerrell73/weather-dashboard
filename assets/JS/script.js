@@ -45,7 +45,34 @@ function fetchForecast() {
 
 };
 
-function fetchUVIndex() {
+function fetchUVIndex(coordinates) {
+    let apiURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${coordinates.lat}&lon=${coordinates.lon}&APPID=${apiKey}`;
+
+    $.get(apiURL).then(function(response){
+        let uvIndex = response.value;
+        let uvSeverity = "green";
+        let fontColor = "white"
+
+        //Change UV background based on reading
+        //Also change font color for readability
+        if (uvIndex >= 11) {
+            uvSeverity = "purple";
+        } else if (uvIndex >= 8) {
+            uvSeverity = "red";
+        } else if (uvIndex >= 6) {
+            uvSeverity = "orange";
+            fontColor = "black"
+        } else if (uvIndex >= 3) {
+            uvSeverity = "yellow";
+            fontColor = "black"
+        }
+        weather.append(
+            `<p>
+            UV Index:
+             <span class="text-${fontColor} uvPadding" style="background-color: ${uvSeverity};">${uvIndex}</span>
+            </p>`
+            );
+    })
 
 };
 
