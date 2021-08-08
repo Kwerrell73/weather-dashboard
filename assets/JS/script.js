@@ -45,7 +45,38 @@ function fetchWeather(citySelected) {
 
 
 
-function fetchForecast() {
+function fetchForecast(citySelected) {
+    let apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citySelected}&units=imperial&APPID=${apiKey}`;
+
+    $.get(apiURL)
+        .then(function (response) {
+            let forecastData = response.list;
+            forecast.empty();
+            $.each(forecastData, function (i) {
+                if (!forecastData[i].dt_txt.includes("12:00:00")) {
+                    return;
+                }
+    let forecastDate = new Date(forecastData[i].dt * 1000);
+    let weatherMapIcon = `https://openweathermap.org/img/wn/${forecastData[i].weather[0].icon}.png`;
+
+                forecast.append(`
+            <div class="col-md">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h4>${forecastDate.getMonth() + 1}/${forecastDate.getDate()}/${forecastDate.getFullYear()}</h4>
+                        <img src=${weatherMapIcon} alt="Icon">
+
+                        <p id="card-text">
+                        Temp: ${forecastData[i].main.temp} &#176;F,
+                        <br>
+                        <br>
+                        Humidity: ${forecastData[i].main.humidity}%</p>
+                    </div>
+                </div>
+            </div>
+            `)
+            })
+        })
 
 };
 
@@ -86,22 +117,22 @@ function fetchUVIndex(coordinates) {
 };
 
 function historyBtn(citySelected) {
-      // If the button exists in history, exit the function
+    // If the button exists in history, exit the function
 
-      var citySearch = citySelected.trim();
-      var buttonCheck = $(`#previousSearch > BUTTON[value='${citySearch}']`);
-      
-      if (buttonCheck.length == 1) {
+    var citySearch = citySelected.trim();
+    var buttonCheck = $(`#previousSearch > BUTTON[value='${citySearch}']`);
+
+    if (buttonCheck.length == 1) {
         return;
-      }
-      
-      if (!citiesArray.includes(citySelected)){
-          citiesArray.push(citySelected);
-          localStorage.setItem("localWeatherSearches", JSON.stringify(citiesArray));
-      }
-  
-      $("#previousSearch").prepend
-      (`
+    }
+
+    if (!citiesArray.includes(citySelected)) {
+        citiesArray.push(citySelected);
+        localStorage.setItem("localWeatherSearches", JSON.stringify(citiesArray));
+    }
+
+    $("#previousSearch").prepend
+        (`
       <button class="btn btn-light cityHistoryBtn" 
       value='${citySelected}'>${citySelected}</button>
       `);
@@ -113,19 +144,19 @@ function searchHistory() {
 };
 
 
-// Get a deafult weather search
+// Set the default weather search
 fetchWeather("Scottsdale");
 fetchForecast("Scottsdale");
 
 $("#submitCity").click(function () {
     event.preventDefault();
-    let cityName = $("#cityInput").val();
-    fetchWeather(cityName);
-    fetchForecast(cityName);
+    let citySelected = $("#cityInput").val();
+    fetchWeather(citySelected);
+    fetchForecast(citySelected);
 });
 
 $("#previousSearch").click(function () {
-    let cityName = event.target.value;
-    fetchWeather(cityName);
-    fetchForecast(cityName);
+    let citySelected = event.target.value;
+    fetchWeather(citySelected);
+    fetchForecast(citySelected);
 })

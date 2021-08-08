@@ -4,11 +4,9 @@
     background: linear-gradient(100DEG, rgb(40, 18, 168), rgb(223, 236, 148), rgb(8, 127, 201), rgb(223, 236, 148), rgb(55, 0, 128));
 }
 
-/* .fiveDay {
-    border: 2px solid white;
-    border-radius: 5px;
-    padding: 20px 20px 20px 20px;
-} */
+.fiveDay {
+   padding: 20px 20px 20px 20px;
+}
 .searchColumn {
     background-color: #eee;
 }
@@ -48,6 +46,15 @@ h4 {
 .card-body {
     padding: 0.75rem;
     padding-bottom: 0;
+    background:  rgb(58, 19, 250);
+
+}
+
+#card-text {
+    border: rgb(185, 248, 11) solid 2px;
+    padding: 15px;
+    font-size: 14px;
+
 }
 
 #currentWeather {
