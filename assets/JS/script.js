@@ -1,6 +1,6 @@
 const apiKey = "823d12533533a33a3f03e7bef61cae69";
 
-var weather = $("#currentWeather");
+var weather = $("#weather");
 var forecast = $("#weatherForecast");
 var cities;
 
@@ -11,6 +11,7 @@ if (localStorage.getItem("localWeatherSearches")) {
     cities = [];
 };
 
+// get weather by city selected
 function fetchWeather(citySelected) {
     let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${citySelected}&units=imperial&APPID=${apiKey}`;
 
@@ -27,7 +28,7 @@ function fetchWeather(citySelected) {
         (${time.getMonth() + 1}/${time.getDate()}/${time.getFullYear()})
         <img src=${weatherMapIcon} height="70px"></h2>
 
-        <p>
+        <p id="forecast-text">
         Temperature: ${response.main.temp} &#176;F,        
         <br>
         <br>
@@ -43,8 +44,7 @@ function fetchWeather(citySelected) {
     })
 };
 
-
-
+// Get 5 day forecast
 function fetchForecast(citySelected) {
     let apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citySelected}&units=imperial&APPID=${apiKey}`;
 
@@ -80,6 +80,7 @@ function fetchForecast(citySelected) {
 
 };
 
+// Get UV index by lat and lon
 function fetchUVIndex(coordinates) {
     let apiURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${coordinates.lat}&lon=${coordinates.lon}&APPID=${apiKey}`;
 
@@ -116,6 +117,7 @@ function fetchUVIndex(coordinates) {
 
 };
 
+// Create search history
 function historyBtn(citySelected) {
     // If the button exists in history, exit the function
 
@@ -139,8 +141,11 @@ function historyBtn(citySelected) {
 
 };
 
-function searchHistory() {
-
+//show search history
+function searchHistory(array) {
+    $.each(array, function(i) {
+        historyBtn(array[i]);
+    })
 };
 
 
