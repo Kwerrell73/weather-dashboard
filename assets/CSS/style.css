@@ -4,6 +4,11 @@
     background: linear-gradient(100DEG, rgb(40, 18, 168), rgb(223, 236, 148), rgb(8, 127, 201), rgb(223, 236, 148), rgb(55, 0, 128));
 }
 
+/* .fiveDay {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+} */
 .searchColumn {
     background-color: #eee;
 }
