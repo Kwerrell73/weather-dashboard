@@ -1,3 +1,9 @@
+
+/* add gradient to background of navbar */
+.navbar {
+    background: linear-gradient(100DEG, rgb(40, 18, 168), rgb(223, 236, 148), rgb(8, 127, 201), rgb(223, 236, 148), rgb(55, 0, 128));
+}
+
 .searchColumn {
     background-color: #eee;
 }
@@ -14,7 +20,6 @@ h4 {
 .container {
     max-width: 1300px;
 }
-
 
 
 .bg-primary, .input-group {
