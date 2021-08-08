@@ -1,7 +1,7 @@
 const apiKey = "823d12533533a33a3f03e7bef61cae69";
 
 var weather = $("#weather");
-var forecast = $("#weatherForecast");
+var forecast = $("#forecast");
 var cities;
 
 if (localStorage.getItem("localWeatherSearches")) {
