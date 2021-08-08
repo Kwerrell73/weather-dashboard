@@ -56,8 +56,8 @@ function fetchForecast(citySelected) {
                 if (!forecastData[i].dt_txt.includes("12:00:00")) {
                     return;
                 }
-    let forecastDate = new Date(forecastData[i].dt * 1000);
-    let weatherMapIcon = `https://openweathermap.org/img/wn/${forecastData[i].weather[0].icon}.png`;
+                let forecastDate = new Date(forecastData[i].dt * 1000);
+                let weatherMapIcon = `https://openweathermap.org/img/wn/${forecastData[i].weather[0].icon}.png`;
 
                 forecast.append(`
             <div class="col-md">
@@ -143,7 +143,7 @@ function historyBtn(citySelected) {
 
 //show search history
 function searchHistory(array) {
-    $.each(array, function(i) {
+    $.each(array, function (i) {
         historyBtn(array[i]);
     })
 };
