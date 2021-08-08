@@ -50,26 +50,27 @@ function fetchUVIndex(coordinates) {
 
     $.get(apiURL).then(function(response){
         let uvIndex = response.value;
-        let uvSeverity = "green";
+        let uvData = "green";
         let fontColor = "white"
 
         //Change UV background based on reading
         //Also change font color for readability
         if (uvIndex >= 11) {
-            uvSeverity = "purple";
+            uvData = "purple";
         } else if (uvIndex >= 8) {
-            uvSeverity = "red";
+            uvData = "red";
         } else if (uvIndex >= 6) {
-            uvSeverity = "orange";
+            uvData = "orange";
             fontColor = "black"
         } else if (uvIndex >= 3) {
-            uvSeverity = "yellow";
+            uvData = "yellow";
             fontColor = "black"
         }
         weather.append(
             `<p>
+            <br>
             UV Index:
-             <span class="text-${fontColor} uvPadding" style="background-color: ${uvSeverity};">${uvIndex}</span>
+             <span class="text-${fontColor} uvPadding" style="background-color: ${uvData};">${uvIndex}</span>
             </p>`
             );
     })
